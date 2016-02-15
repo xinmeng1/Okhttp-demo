@@ -135,4 +135,15 @@
         android:layout_alignParentEnd="true"
         android:layout_below="@+id/btn_multi_test" />
 
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Register Block"
+        android:id="@+id/register_sync"
+        android:layout_below="@+id/btn_report_event"
+        android:layout_alignLeft="@+id/btn_get_devices"
+        android:layout_alignStart="@+id/btn_get_devices"
+        android:layout_marginLeft="14dp"
+        android:layout_marginStart="14dp" />
+
 </RelativeLayout>

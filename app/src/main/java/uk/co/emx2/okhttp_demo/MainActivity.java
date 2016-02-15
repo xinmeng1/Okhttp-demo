@@ -3,11 +3,10 @@ package uk.co.emx2.okhttp_demo;
 import android.content.Context;
 import android.net.wifi.WifiInfo;
 import android.net.wifi.WifiManager;
+import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
-import android.sax.TextElementListener;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.telephony.TelephonyManager;
 import android.util.AttributeSet;
 import android.view.View;
@@ -24,7 +23,6 @@ import butterknife.ButterKnife;
 import butterknife.OnClick;
 import okhttp3.Call;
 import okhttp3.Callback;
-import okhttp3.Request;
 import okhttp3.Response;
 
 public class MainActivity extends AppCompatActivity {
@@ -89,6 +87,23 @@ public class MainActivity extends AppCompatActivity {
         this.deviceMacStr = deviceMac.getText().toString();
         this.deviceTypeStr = deviceType.getText().toString();
         this.deviceUUIDStr = deviceUuid.getText().toString();
+    }
+
+    @OnClick(R.id.register_sync)
+    void OnClickRegisterSync(){
+        getStr();
+        PostApi example = new PostApi();
+        String registerJson = example.bowlingRegisterJson(userUUIDStr, deviceNameStr
+                , deviceTypeStr, deviceUUIDStr,  deviceMacStr);
+
+        Response response = null;
+        try {
+            response = example.post(ApiUrl.RegisterUserDevice, registerJson).execute();
+            mResponse = String.valueOf(response);
+            textResponse.setText(String.valueOf(mResponse));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     @OnClick(R.id.btn_register)
